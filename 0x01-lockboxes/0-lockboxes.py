@@ -3,6 +3,7 @@
 Technical Interview Preparation
 """
 import typing
+from collections import deque
 
 
 def canUnlockAll(boxes: typing.List[typing.List]) -> bool:
@@ -15,27 +16,18 @@ def canUnlockAll(boxes: typing.List[typing.List]) -> bool:
     Returns:
         bool: True if all boxes can be opened else False
     """
-    if len(boxes) == 1:
-        return True
-    boxes_dict = {0: boxes[0]}
-    nextKey = 0
-    currentKeys = [0]
-    flag = True
+    opened_boxes = set([0])
+    queue = deque([0])
 
-    while boxes_dict:
-        temp = 0
-        for box in boxes_dict.get(nextKey):
-            if box not in currentKeys and box in range(len(boxes)):
-                if boxes[box]:
-                    boxes_dict[box] = boxes[box]
-                    if flag:
-                        temp = box
-                        flag = False
-                currentKeys.append(box)
-        if len(currentKeys) == len(boxes):
+    while queue:
+
+        current_box = queue.popleft()
+
+        for key in boxes[current_box]:
+            if key not in opened_boxes and key < len(boxes):
+                opened_boxes.add(key)
+                queue.append(key)
+        if len(opened_boxes) == len(boxes):
             break
-        boxes_dict.pop(nextKey)
-        nextKey = temp
-        flag = True
 
-    return len(currentKeys) == len(boxes)
+    return len(opened_boxes) == len(boxes)
