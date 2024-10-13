@@ -1,9 +1,8 @@
 #!/usr/bin/python3
-import typing
-
 """
 Technical Interview Preparation
 """
+import typing
 
 
 def canUnlockAll(boxes: typing.List[typing.List]) -> bool:
