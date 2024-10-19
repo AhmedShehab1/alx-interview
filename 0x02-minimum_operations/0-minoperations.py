@@ -20,7 +20,7 @@ def getPrimeFactorization(number: int) -> list:
         while number % i == 0:
             number = number // i
             res.append(i)
-
+    return res
 
 def minOperations(n: int) -> int:
     """
