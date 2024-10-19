@@ -25,6 +25,8 @@ def getPrimeFactorization(number: int) -> list:
         while number % i == 0:
             number = number // i
             res.append(i)
+    if number != 1:
+        res.append(number)
     return res
 
 
