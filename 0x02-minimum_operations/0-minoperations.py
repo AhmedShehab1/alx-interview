@@ -44,6 +44,4 @@ def minOperations(n: int) -> int:
         int: minimum number of operations required
     """
     fac = getPrimeFactorization(n)
-    if fac[0] != 2 and fac[0] != 3:
-        return 0
     return sum(fac)
