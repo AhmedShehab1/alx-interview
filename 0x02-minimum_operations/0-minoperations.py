@@ -16,11 +16,17 @@ def getPrimeFactorization(number: int) -> list:
               of the input if possible
     """
     res = []
+
+    if number <= 3:
+        res.append(number)
+        return res
+
     for i in range(2, int(math.sqrt(number)) + 1):
         while number % i == 0:
             number = number // i
             res.append(i)
     return res
+
 
 def minOperations(n: int) -> int:
     """
