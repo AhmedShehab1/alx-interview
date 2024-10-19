@@ -17,8 +17,8 @@ def getPrimeFactorization(number: int) -> list:
     """
     res = []
 
-    if number <= 3:
-        res.append(number)
+    if number <= 1:
+        res.append(0)
         return res
 
     for i in range(2, int(math.sqrt(number)) + 1):
@@ -44,6 +44,4 @@ def minOperations(n: int) -> int:
         int: minimum number of operations required
     """
     fac = getPrimeFactorization(n)
-    if fac[0] <= 1:
-        return 0
     return sum(fac)
