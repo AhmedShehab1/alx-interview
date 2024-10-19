@@ -2,6 +2,7 @@
 """
 0-minoperations.py
 """
+import math
 
 
 def getPrimeFactorization(number: int) -> list:
@@ -15,20 +16,10 @@ def getPrimeFactorization(number: int) -> list:
               of the input if possible
     """
     res = []
-    while True:
-        if number <= 3:
-            res.append(number)
-            break
-        if number % 2 == 0:
-            number = number // 2
-            res.append(2)
-        elif number % 3 == 0:
-            number = number // 3
-            res.append(3)
-        else:
-            res.append(number)
-            break
-    return res
+    for i in range(2, int(math.sqrt(number)) + 1):
+        while number % i == 0:
+            number = number // i
+            res.append(i)
 
 
 def minOperations(n: int) -> int:
