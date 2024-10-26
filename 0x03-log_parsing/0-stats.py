@@ -28,9 +28,8 @@ signal.signal(signal.SIGINT, displayer)
 
 for i, line in enumerate(sys.stdin):
     results = re.findall(r"\d{3}\s\d{1,4}", line.strip())
+    if (i + 1) % 10 == 0:
+        displayer()
     if results:
         code, size = results[0].split(" ")
         updater(int(code), int(size))
-    if (i + 1) % 10 == 0:
-        displayer()
-
