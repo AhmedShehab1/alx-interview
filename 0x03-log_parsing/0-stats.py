@@ -26,10 +26,13 @@ def displayer(signum=None, frame=None):
 
 signal.signal(signal.SIGINT, displayer)
 
-for i, line in enumerate(sys.stdin):
+line_counter = 0
+for line in sys.stdin:
     results = re.findall(r"\d{3}\s\d{1,4}", line.strip())
-    if (i + 1) % 10 == 0:
-        displayer()
     if results:
         code, size = results[0].split(" ")
         updater(int(code), int(size))
+        line_counter += 1
+
+    if line_counter % 10 == 0:
+        displayer()
