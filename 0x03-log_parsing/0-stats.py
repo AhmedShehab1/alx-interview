@@ -26,14 +26,12 @@ def displayer(signum=None, frame=None):
 
 signal.signal(signal.SIGINT, displayer)
 
-log_pattern = re.compile(r'^\S+ - \[.*\] "GET /projects/260 HTTP/1\.1" (\d{3}) (\d+)$')
-
 line_counter = 0
 for line in sys.stdin:
-    match = log_pattern.match(line.strip())
-    if match:
-        code, size = int(match.group(1)), int(match.group(2))
-        updater(code, size)
+    results = re.findall(r"\d{3}\s\d{1,4}", line.strip())
+    if results:
+        code, size = results[0].split(" ")
+        updater(int(code), int(size))
         line_counter += 1
 
     if line_counter % 10 == 0:
