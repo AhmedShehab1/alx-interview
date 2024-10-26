@@ -36,3 +36,5 @@ for line in sys.stdin:
 
     if line_counter % 10 == 0:
         displayer()
+
+displayer()
