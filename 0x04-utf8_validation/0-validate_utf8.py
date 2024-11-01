@@ -16,6 +16,7 @@ def validUTF8(data: list) -> bool:
     """
     while True:
         if data:
+            data[0] = data[0] & 0xFF
             shifted_byte = data[0] >> 4
             if (shifted_byte) > 15:
                 return False
