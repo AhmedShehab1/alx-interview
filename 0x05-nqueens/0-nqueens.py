@@ -3,7 +3,7 @@
 N-Queens Using Backtracking & Bit Manipulation
 """
 import sys
-from typing import List
+
 
 input = sys.argv[1:]
 if len(input) != 1:
@@ -20,7 +20,7 @@ if num < 4:
     exit(1)
 
 
-def solveNQueens(n: int) -> List[List[int]]:
+def solveNQueens(n: int):
     solutions = []
     backtrack(n, 0, 0, 0, 0, [], solutions)
     return solutions
